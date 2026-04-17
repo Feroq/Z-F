@@ -6,12 +6,15 @@
     <title>Zeynep 🤍 Feridun</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body, html { height: 100%; overflow-x: hidden; background: #000; font-family: 'Segoe UI', Arial, sans-serif; color: white; }
+        body, html { 
+            height: 100%; background: #000; font-family: 'Segoe UI', Arial, sans-serif; 
+            color: white; overflow-x: hidden;
+        }
 
         /* Şifre Ekranı */
         #passwordScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.9), rgba(139,0,0,0.8));
+            background: linear-gradient(rgba(0,0,0,0.92), rgba(139,0,0,0.85));
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 100;
         }
@@ -30,37 +33,8 @@
         }
         #errorMsg { color: #ff9999; margin-top: 20px; font-size: 1.2rem; display: none; }
 
-        /* Ana Sayfa */
-        #mainContent { display: none; min-height: 100vh; position: relative; }
-
-        .video-container {
-            width: 100%; max-width: 900px; margin: 30px auto; padding: 0 15px;
-        }
-        .video-container iframe {
-            width: 100%; height: 480px; border-radius: 16px; box-shadow: 0 0 40px rgba(255,50,100,0.7);
-        }
-
-        .slideshow {
-            position: relative; width: 100%; height: 85vh; overflow: hidden;
-        }
-        .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-position: center;
-            opacity: 0; transition: opacity 3s ease-in-out;
-        }
-        .slide.active { opacity: 1; }
-
-        .overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(139,0,0,0.7));
-        }
-
-        .quote {
-            position: absolute; bottom: 12%; left: 50%; transform: translateX(-50%);
-            text-align: center; z-index: 10; max-width: 90%; padding: 15px 25px;
-            background: rgba(0,0,0,0.45); border-radius: 20px;
-            font-size: 1.6rem; line-height: 1.45;
-        }
+        /* Ana İçerik */
+        #mainContent { display: none; padding-bottom: 100px; }
 
         /* Düşen Güller */
         .roses { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
@@ -73,9 +47,39 @@
             100% { transform: translateY(110vh) rotate(420deg); }
         }
 
+        /* YouTube Videosu */
+        .video-container {
+            width: 100%; max-width: 900px; margin: 30px auto; padding: 0 15px;
+        }
+        .video-container iframe {
+            width: 100%; height: 480px; border-radius: 16px; box-shadow: 0 0 40px rgba(255,50,100,0.7);
+        }
+
+        /* Giriş Sözü (Müziğin hemen altında) */
+        .intro-quote {
+            text-align: center; max-width: 800px; margin: 30px auto; padding: 30px 20px;
+            font-size: 1.85rem; line-height: 1.5; color: #ffd0d0;
+            text-shadow: 0 0 20px #ff3366;
+        }
+
+        /* Fotoğraflar ve Sözler */
+        .memory {
+            width: 100%; max-width: 800px; margin: 40px auto; padding: 0 15px;
+        }
+        .memory img {
+            width: 100%; border-radius: 16px; box-shadow: 0 10px 30px rgba(255,50,100,0.4);
+            display: block;
+        }
+        .memory .quote {
+            margin-top: 20px; text-align: center; font-size: 1.55rem; line-height: 1.45;
+            padding: 20px; background: rgba(0,0,0,0.5); border-radius: 16px;
+            color: #ffe6e6;
+        }
+
         @media (max-width: 768px) {
             #passwordScreen h1 { font-size: 2.8rem; }
-            .quote { font-size: 1.35rem; }
+            .intro-quote { font-size: 1.5rem; }
+            .memory .quote { font-size: 1.35rem; }
             .video-container iframe { height: 320px; }
         }
     </style>
@@ -100,38 +104,57 @@
                     frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <!-- Slayt Gösterisi - Senin fotoğraflarınla -->
-        <div class="slideshow">
-            <div class="slide active" style="background-image: url('IMG-20260215-WA0026.jpg');"></div>
-            <div class="quote">Seninle her bakışım, kalbimin en güzel şiirini yazıyor ❤️</div>
-
-            <div class="slide" style="background-image: url('IMG-20260301-WA0009.jpg');"></div>
-            <div class="quote">Gözlerinle doğan her sabah, hayatıma yeniden anlam katıyor.</div>
-
-            <div class="slide" style="background-image: url('IMG-20260325-WA0012.jpg');"></div>
-            <div class="quote">Yüzüne baktığımda zaman duruyor. Sen benim en derin huzurumsun.</div>
-
-            <div class="slide" style="background-image: url('IMG-20260325-WA0021.jpg');"></div>
-            <div class="quote">Gözlerin benim için en güzel yıldızlar. Seninle kendimi daha çok buluyorum.</div>
-
-            <div class="slide" style="background-image: url('IMG-20260402-WA0001.jpg');"></div>
-            <div class="quote">Senin yanında olmak dünyanın en güvenli yeri. Kalbim seninle atıyor.</div>
-
-            <div class="slide" style="background-image: url('IMG-20260407-WA0000.jpg');"></div>
-            <div class="quote">Seni sevmek her gün yeni bir bahar açmak gibi ❤️</div>
-
-            <div class="slide" style="background-image: url('IMG-20260411-WA0001.jpg');"></div>
-            <div class="quote">Sonsuza kadar seninle... Sen benim her şeyimsin.<br>Zeynep 🤍 Feridun</div>
+        <!-- Büyük Giriş Sözü -->
+        <div class="intro-quote">
+            Sen geldin diye hayatım yeniden başladı.<br>
+            Kalbimi çıkardım, yerine seninkini koydum.<br>
+            Sen benim en güzel mucizemsin ❤️
         </div>
-        <div class="overlay"></div>
 
+        <!-- Fotoğraflar ve Özel Sözler -->
+        <div class="memory">
+            <img src="IMG-20260215-WA0026.jpg" alt="Zeynep">
+            <div class="quote">Seninle her bakışım, kalbimin en güzel şiirini yazıyor.</div>
+        </div>
+
+        <div class="memory">
+            <img src="IMG-20260301-WA0009.jpg" alt="Zeynep">
+            <div class="quote">Gözlerinle doğan her sabah, hayatıma yeniden anlam katıyor. Seni sevmek en büyük huzurum.</div>
+        </div>
+
+        <div class="memory">
+            <img src="IMG-20260325-WA0012.jpg" alt="Zeynep">
+            <div class="quote">Yüzüne baktığımda zaman duruyor. Sen benim en derin sessizliğim ve en güzel fırtınamsın.</div>
+        </div>
+
+        <div class="memory">
+            <img src="IMG-20260325-WA0021.jpg" alt="Zeynep">
+            <div class="quote">Gözlerin benim için en güzel yıldızlar. Seninle her an kendimi daha çok buluyorum.</div>
+        </div>
+
+        <div class="memory">
+            <img src="IMG-20260402-WA0001.jpg" alt="Zeynep">
+            <div class="quote">Senin yanında olmak dünyanın en güvenli yeri. Kalbim sadece seninle atıyor.</div>
+        </div>
+
+        <div class="memory">
+            <img src="IMG-20260407-WA0000.jpg" alt="Zeynep">
+            <div class="quote">Seni sevmek, her gün yeni bir bahar açmak gibi. Kalbimi sana adadım.</div>
+        </div>
+
+        <div class="memory">
+            <img src="IMG-20260411-WA0001.jpg" alt="Zeynep">
+            <div class="quote">Sonsuza kadar seninle...<br>Sen benim her şeyimsin.<br>Zeynep 🤍 Feridun</div>
+        </div>
+
+        <!-- Müzik -->
         <audio id="bgMusic" loop>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
     <script>
-        // Şifre
+        // Şifre Kontrolü
         document.getElementById('submitBtn').addEventListener('click', () => {
             if (document.getElementById('passwordInput').value === "ZeynepFeridun") {
                 document.getElementById('passwordScreen').style.display = 'none';
@@ -143,30 +166,26 @@
             }
         });
 
-        // Düşen güller
+        // Enter tuşu
+        document.getElementById('passwordInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') document.getElementById('submitBtn').click();
+        });
+
+        // Düşen kırmızı güller
         function createRose() {
             const rose = document.createElement('div');
             rose.className = 'rose';
             rose.textContent = '🌹';
             rose.style.left = Math.random() * 100 + 'vw';
-            rose.style.fontSize = (Math.random() * 30 + 25) + 'px';
-            rose.style.animationDuration = (Math.random() * 10 + 12) + 's';
+            rose.style.fontSize = (Math.random() * 32 + 24) + 'px';
+            rose.style.animationDuration = (Math.random() * 10 + 13) + 's';
             document.getElementById('roses').appendChild(rose);
-            setTimeout(() => rose.remove(), 25000);
+            setTimeout(() => rose.remove(), 26000);
         }
-        setInterval(createRose, 280);
-
-        // Slayt geçişi
-        let current = 0;
-        const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            slides[current].classList.remove('active');
-            current = (current + 1) % slides.length;
-            slides[current].classList.add('active');
-        }, 5500);
+        setInterval(createRose, 300);
 
         const music = document.getElementById('bgMusic');
-        music.volume = 0.7;
+        music.volume = 0.68;
     </script>
 </body>
-              </html>
+</html>
