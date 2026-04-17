@@ -10,12 +10,12 @@
         /* Şifre Giriş Ekranı */
         #passwordScreen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.85), rgba(139,0,0,0.7));
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(139,0,0,0.8));
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 100; transition: opacity 1s;
         }
         #passwordScreen h1 {
-            font-size: 4.5rem; margin-bottom: 40px; letter-spacing: 4px;
+            font-size: 4.2rem; margin-bottom: 30px; letter-spacing: 5px;
             text-shadow: 0 0 30px #ff3366;
         }
         #passwordInput {
@@ -32,18 +32,17 @@
         /* Ana İçerik */
         #mainContent { display: none; min-height: 100vh; position: relative; }
 
-        /* YouTube Videosu - Üstte */
+        /* YouTube Videosu */
         .video-container {
-            position: relative; width: 100%; max-width: 900px; margin: 40px auto 30px; padding: 0 20px;
-            z-index: 5;
+            position: relative; width: 100%; max-width: 900px; margin: 30px auto; padding: 0 20px; z-index: 6;
         }
         .video-container iframe {
-            width: 100%; height: 500px; border-radius: 15px; box-shadow: 0 0 40px rgba(255, 50, 100, 0.6);
+            width: 100%; height: 480px; border-radius: 16px; box-shadow: 0 0 40px rgba(255, 50, 100, 0.7);
         }
 
-        /* Slayt Gösterisi - Alta */
+        /* Slayt Gösterisi */
         .slideshow {
-            position: relative; width: 100%; height: 80vh; overflow: hidden;
+            position: relative; width: 100%; height: 85vh; overflow: hidden;
         }
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -54,38 +53,33 @@
 
         .overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(139,0,0,0.6));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(139,0,0,0.75));
+            z-index: 4;
         }
 
-        .title {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            text-align: center; z-index: 6; text-shadow: 0 0 25px #ff3366;
-        }
-        .title h1 {
-            font-size: 4rem; margin-bottom: 10px;
-        }
-        .title p {
-            font-size: 1.8rem;
+        .quote {
+            position: absolute; bottom: 15%; left: 50%; transform: translateX(-50%);
+            text-align: center; z-index: 7; max-width: 90%; padding: 15px 25px;
+            background: rgba(0,0,0,0.4); border-radius: 20px;
+            font-size: 1.65rem; line-height: 1.4; text-shadow: 0 0 15px #ff3366;
         }
 
         /* Düşen Kırmızı Güller */
-        .roses {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 4; overflow: hidden;
-        }
+        .roses { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; overflow: hidden; }
+
         .rose {
-            position: absolute; color: #ff3366; font-size: 2.5rem; opacity: 0.9;
-            animation: fall linear forwards;
-            text-shadow: 0 0 10px #ff0000;
+            position: absolute; color: #ff3366; font-size: 2.8rem; opacity: 0.85;
+            animation: fall linear forwards; text-shadow: 0 0 12px #ff0000;
         }
 
         @keyframes fall {
-            0% { transform: translateY(-100px) rotate(0deg); }
-            100% { transform: translateY(110vh) rotate(360deg); }
+            0% { transform: translateY(-120px) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(420deg); }
         }
 
         @media (max-width: 768px) {
             #passwordScreen h1 { font-size: 3rem; }
-            .title h1 { font-size: 2.8rem; }
+            .quote { font-size: 1.35rem; }
             .video-container iframe { height: 320px; }
         }
     </style>
@@ -113,22 +107,37 @@
                     allowfullscreen></iframe>
         </div>
 
-        <!-- Slayt Gösterisi + Başlık -->
+        <!-- Slayt Gösterisi + Fotoğraflara Özel Sözler -->
         <div class="slideshow" id="slideshow">
+            <!-- 1. Aynada bej takım (zarif ve güçlü) -->
             <div class="slide active" style="background-image: url('images/1.jpg');"></div>
+            <div class="quote">Seninle her bakışım, kalbimin en güzel şiirini yazıyor.<br>❤️</div>
+
+            <!-- 2. Kırmızı elbise doğada (masum ve huzurlu) -->
             <div class="slide" style="background-image: url('images/2.jpg');"></div>
+            <div class="quote">Gözlerinle doğan her sabah, hayatıma yeniden anlam katıyor.<br>Seni sevmek en büyük huzurum.</div>
+
+            <!-- 3. Yatakta yakın yüz (samimi ve derin) -->
             <div class="slide" style="background-image: url('images/3.jpg');"></div>
+            <div class="quote">Yüzüne baktığımda zaman duruyor.<br>Sen benim en derin sessizliğim ve en güzel fırtınamsın.</div>
+
+            <!-- 4. Siyah başörtülü makyajlı portre (güçlü ve büyüleyici) -->
             <div class="slide" style="background-image: url('images/4.jpg');"></div>
+            <div class="quote">Gözlerin benim için en güzel yıldızlar.<br>Seninle her an, kendimi daha çok buluyorum.</div>
+
+            <!-- 5. Gri yelekli ayna selfie (modern ve kendine güvenen) -->
             <div class="slide" style="background-image: url('images/5.jpg');"></div>
+            <div class="quote">Senin yanında olmak, dünyanın en güvenli yeri.<br>Kalbim seninle atıyor, ruhum seninle yaşıyor.</div>
+
+            <!-- 6. Kırmızı gül buketi (mutluluk ve aşk dolu) -->
             <div class="slide" style="background-image: url('images/6.jpg');"></div>
+            <div class="quote">Seni sevmek, her gün yeni bir bahar açmak gibi.<br>Kalbimi çıkardım, yerine seninkini koydum ❤️</div>
+
+            <!-- 7. Tekrar 1. fotoğraf (kapanış) -->
             <div class="slide" style="background-image: url('images/1.jpg');"></div>
+            <div class="quote">Sonsuza kadar seninle... Sen benim her şeyimsin.<br>Zeynep 🤍 Feridun</div>
         </div>
         <div class="overlay"></div>
-
-        <div class="title">
-            <h1>ZEYNEP 🤍 FERIDUN</h1>
-            <p>Kalbimi Koydum Sana ❤️</p>
-        </div>
 
         <!-- Müzik -->
         <audio id="bgMusic" loop>
@@ -155,38 +164,34 @@
             }
         });
 
-        // Enter tuşu ile giriş
         document.getElementById('passwordInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') document.getElementById('submitBtn').click();
         });
 
-        // Düşen Kırmızı Güller Animasyonu
+        // Düşen Kırmızı Güller
         function createRose() {
             const rose = document.createElement('div');
             rose.classList.add('rose');
             rose.textContent = '🌹';
             rose.style.left = Math.random() * 100 + 'vw';
-            rose.style.fontSize = (Math.random() * 30 + 25) + 'px';
-            rose.style.animationDuration = (Math.random() * 8 + 10) + 's';
-            rose.style.opacity = Math.random() * 0.7 + 0.6;
+            rose.style.fontSize = (Math.random() * 35 + 25) + 'px';
+            rose.style.animationDuration = (Math.random() * 9 + 11) + 's';
             document.getElementById('roses').appendChild(rose);
-
-            setTimeout(() => rose.remove(), 20000);
+            setTimeout(() => rose.remove(), 22000);
         }
-        setInterval(createRose, 280);
+        setInterval(createRose, 250);
 
-        // Slayt Gösterisi
+        // Slayt Gösterisi (her slayt 5.5 saniye)
         const slides = document.querySelectorAll('.slide');
-        let currentSlide = 0;
+        let current = 0;
         setInterval(() => {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-        }, 5200);
+            slides[current].classList.remove('active');
+            current = (current + 1) % slides.length;
+            slides[current].classList.add('active');
+        }, 5500);
 
-        // Müzik Ses Seviyesi
         const music = document.getElementById('bgMusic');
-        music.volume = 0.68;
+        music.volume = 0.7;
     </script>
 </body>
 </html>
