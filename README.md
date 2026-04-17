@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeynep 🤍 Feridun</title>
+    <title>Zeynep🤍Feridun</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body, html { height: 100%; overflow-x: hidden; background: #000; font-family: 'Segoe UI', Arial, sans-serif; color: white; }
@@ -88,7 +88,7 @@
 
     <!-- Şifre Giriş Ekranı -->
     <div id="passwordScreen">
-        <h1>ZEYNEP 🤍 FERIDUN</h1>
+        <h1>ZEYNEP🤍FERIDUN</h1>
         <input type="password" id="passwordInput" placeholder="Şifreyi girin...">
         <button id="submitBtn">Giriş Yap ❤️</button>
         <div id="errorMsg">Yanlış şifre, tekrar dene.</div>
