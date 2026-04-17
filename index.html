@@ -4,79 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sonsuza Dek Z🤍F</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
 body{
 background:linear-gradient(135deg,#050505,#111);
 color:white;
 text-align:center;
-overflow-x:hidden;
+overflow:hidden;
 }
+
 canvas{
 position:fixed;
 inset:0;
 z-index:-1;
 }
-.glass{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
-border-radius:30px;
-padding:30px;
-box-shadow:0 10px 30px rgba(0,0,0,.4);
-}
+
+/* LOGIN */
 #login{
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 }
-#site{display:none;padding:30px;}
+
+.box{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+padding:30px;
+border-radius:25px;
+width:300px;
+}
+
 input{
-padding:14px;
+width:100%;
+padding:12px;
 border:none;
 border-radius:20px;
-width:220px;
-text-align:center;
 margin-top:15px;
+text-align:center;
 }
+
 button{
 padding:12px 25px;
 border:none;
-border-radius:30px;
-margin-top:20px;
+border-radius:25px;
+margin-top:15px;
 cursor:pointer;
+transition:.3s;
 }
+
+button:hover{transform:scale(1.05);}
+
+.shake{animation:shake .4s;}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-10px);}
+50%{transform:translateX(10px);}
+75%{transform:translateX(-10px);}
+100%{transform:translateX(0);}
+}
+
+/* SITE */
+#site{
+display:none;
+padding:25px;
+height:100vh;
+overflow-y:auto;
+}
+
 .heart{
-font-size:70px;
+font-size:60px;
 animation:pulse 1.5s infinite;
 }
+
 @keyframes pulse{
-50%{transform:scale(1.15);}
+50%{transform:scale(1.2);}
 }
+
+/* GALERI */
 .slider{
 display:flex;
 gap:20px;
 overflow-x:auto;
-padding:30px 10px;
+padding:20px;
 scroll-snap-type:x mandatory;
 }
+
 .slider::-webkit-scrollbar{display:none;}
+
 .card{
 min-width:250px;
 scroll-snap-align:center;
 }
+
 .card img{
 width:250px;
 height:330px;
 object-fit:cover;
-border-radius:25px;
+border-radius:20px;
 cursor:pointer;
+transition:.3s;
 }
+
+.card img:hover{transform:scale(1.05);}
+
 .card p{
-margin-top:12px;
-font-size:15px;
+margin-top:10px;
 color:#ddd;
 }
+
+/* POPUP */
 #popup{
 display:none;
 position:fixed;
@@ -86,120 +125,38 @@ justify-content:center;
 align-items:center;
 z-index:999;
 }
+
 #popup img{
 max-width:90%;
 max-height:90%;
 border-radius:20px;
 }
-#letter{
-display:none;
-max-width:700px;
-margin:30px auto;
-line-height:1.8;
+
+/* FLASH */
+.flash{
+position:fixed;
+inset:0;
+background:white;
+animation:flash .5s;
+z-index:9999;
+}
+
+@keyframes flash{
+0%{opacity:0;}
+30%{opacity:1;}
+100%{opacity:0;}
+}
+
+/* HEART BURST */
+.burst{
+position:fixed;
+animation:up 1s linear forwards;
+font-size:20px;
+z-index:9999;
+}
+
+@keyframes up{
+to{transform:translateY(-200px);opacity:0;}
 }
 </style>
-</head>
-<body>
-
-<canvas id="stars"></canvas>
-
-<div id="login">
-<div class="glass">
-<div class="heart">🤍</div>
-<h2>Gizli Aşk Sayfası</h2>
-<input type="ZeynepFeridun" id="pass" placeholder="ZeynepFeridun">
-<br>
-<button onclick="enterSite()">Giriş Yap</button>
-<p id="error"></p>
-</div>
-</div>
-
-<div id="site">
-<div class="heart">🤍</div>
-<h1>Sonsuza Dek Z🤍F</h1>
-<h3 id="days"></h3>
-
-<button onclick="toggleLetter()">💌 Mektubu Aç</button>
-
-<div id="letter" class="glass">
-Sen hayatıma gelen en güzel tesadüfsün.
-Her fotoğrafımız bir anı,
-her anımız kalbimde saklı.
-Bu sayfa sadece sana ait.
-<br><br>
-Feridun 🤍
-</div>
-
-<div class="slider">
-<div class="card">
-<img src="https://picsum.photos/id/1011/500/700" onclick="openImg(this.src)">
-<p>Sen gülünce dünya güzelleşiyor 🤍</p>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/id/1025/500/700" onclick="openImg(this.src)">
-<p>Kalbimin en güzel yeri sensin ✨</p>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/id/1035/500/700" onclick="openImg(this.src)">
-<p>Her anım seninle daha güzel 🌙</p>
-</div>
-
-<div class="card">
-<img src="https://picsum.photos/id/1043/500/700" onclick="openImg(this.src)">
-<p>Sonsuza kadar sen ve ben 💫</p>
-</div>
-</div>
-</div>
-
-<div id="popup" onclick="closeImg()">
-<img id="popupImg">
-</div>
-
-<script>
-const password="zeynepferidun";
-
-function enterSite(){
-const val=document.getElementById("pass").value;
-if(val===password){
-document.getElementById("login").style.display="none";
-document.getElementById("site").style.display="block";
-}else{
-document.getElementById("error").innerText="Yanlış şifre";
-}
-}
-
-function toggleLetter(){
-const l=document.getElementById("letter");
-l.style.display=l.style.display==="block"?"none":"block";
-}
-
-function openImg(src){
-document.getElementById("popup").style.display="flex";
-document.getElementById("popupImg").src=src;
-}
-function closeImg(){
-document.getElementById("popup").style.display="none";
-}
-
-const start=new Date("2024-01-01");
-const now=new Date();
-const days=Math.floor((now-start)/(1000*60*60*24));
-document.getElementById("days").innerText=days+" gündür birlikte";
-
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-const stars=Array.from({length:120},()=>({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2
-}));
-function draw(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math
+</head
