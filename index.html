@@ -44,7 +44,7 @@
         /* Ana İçerik */
         #mainContent { display: none; padding-bottom: 100px; }
 
-        /* Düşen Küçük Kırmızı Kalpler */
+        /* Düşen Küçük Kalpler */
         .hearts { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             pointer-events: none; z-index: 5; overflow: hidden; 
@@ -60,7 +60,7 @@
             100% { transform: translateY(110vh) rotate(25deg); }
         }
 
-        /* YouTube Videosu */
+        /* YouTube */
         .video-container {
             width: 100%; max-width: 900px; margin: 30px auto; padding: 0 15px;
         }
@@ -75,7 +75,7 @@
             text-shadow: 0 0 20px #ff3366;
         }
 
-        /* Fotoğraflar ve Sözler */
+        /* Fotoğraflar */
         .memory {
             width: 100%; max-width: 800px; margin: 40px auto; padding: 0 15px;
         }
@@ -115,87 +115,78 @@
     <div id="mainContent">
         <div class="hearts" id="hearts"></div>
 
-        <!-- YouTube Videosu -->
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/HQxmGjTV5TI?autoplay=1&loop=1&playlist=HQxmGjTV5TI" 
                     frameborder="0" allowfullscreen></iframe>
         </div>
 
-        <!-- Büyük Giriş Sözü -->
         <div class="intro-quote">
             Sen geldin diye hayatım yeniden başladı.<br>
             Kalbimi çıkardım, yerine seninkini koydum.<br>
             Sen benim en güzel mucizemsin ❤️
         </div>
 
-        <!-- Fotoğraflar ve Özel Sözler -->
+        <!-- Fotoğraflar -->
         <div class="memory">
-            <img src="IMG-20260215-WA0026.jpg" alt="Zeynep">
+            <img src="IMG-20260215-WA0026.jpg" alt="">
             <div class="quote">Seninle her bakışım, kalbimin en güzel şiirini yazıyor.</div>
         </div>
 
         <div class="memory">
-            <img src="IMG-20260301-WA0009.jpg" alt="Zeynep">
-            <div class="quote">Gözlerinle doğan her sabah, hayatıma yeniden anlam katıyor. Seni sevmek en büyük huzurum.</div>
+            <img src="1000107558.jpg" alt="">   <!-- Yeni eklediğin siyah-beyaz fotoğraf -->
+            <div class="quote">Gözlerinle kalbime dokunduğun her an, dünyam daha güzel oluyor.<br>Seni sevmek en masum mutluluğum.</div>
         </div>
 
         <div class="memory">
-            <img src="IMG-20260325-WA0012.jpg" alt="Zeynep">
-            <div class="quote">Yüzüne baktığımda zaman duruyor. Sen benim en derin sessizliğim ve en güzel fırtınamsın.</div>
+            <img src="IMG-20260325-WA0012.jpg" alt="">
+            <div class="quote">Yüzüne baktığımda zaman duruyor.<br>Sen benim en derin sessizliğim ve en güzel fırtınamsın.</div>
         </div>
 
         <div class="memory">
-            <img src="IMG-20260325-WA0021.jpg" alt="Zeynep">
-            <div class="quote">Gözlerin benim için en güzel yıldızlar. Seninle her an kendimi daha çok buluyorum.</div>
+            <img src="IMG-20260325-WA0021.jpg" alt="">
+            <div class="quote">Gözlerin benim için en güzel yıldızlar.<br>Seninle her an kendimi daha çok buluyorum.</div>
         </div>
 
         <div class="memory">
-            <img src="IMG-20260402-WA0001.jpg" alt="Zeynep">
-            <div class="quote">Senin yanında olmak dünyanın en güvenli yeri. Kalbim sadece seninle atıyor.</div>
+            <img src="IMG-20260402-WA0001.jpg" alt="">
+            <div class="quote">Senin yanında olmak dünyanın en güvenli yeri.<br>Kalbim sadece seninle atıyor.</div>
         </div>
 
         <div class="memory">
-            <img src="IMG-20260407-WA0000.jpg" alt="Zeynep">
-            <div class="quote">Seni sevmek, her gün yeni bir bahar açmak gibi. Kalbimi sana adadım.</div>
+            <img src="IMG-20260407-WA0000.jpg" alt="">
+            <div class="quote">Seni sevmek, her gün yeni bir bahar açmak gibi.<br>Kalbimi sana adadım.</div>
         </div>
 
         <div class="memory">
-            <img src="IMG-20260411-WA0001.jpg" alt="Zeynep">
+            <img src="IMG-20260411-WA0001.jpg" alt="">
             <div class="quote">Sonsuza kadar seninle...<br>Sen benim her şeyimsin.<br>Zeynep 🤍 Feridun</div>
         </div>
 
-        <!-- Müzik (Şifre girilince hemen başlar) -->
         <audio id="bgMusic" loop autoplay>
             <source src="music.mp3" type="audio/mpeg">
         </audio>
     </div>
 
     <script>
-        // Şifre Kontrolü + Müzik ve Video otomatik başlatma
         document.getElementById('submitBtn').addEventListener('click', () => {
             if (document.getElementById('passwordInput').value === "ZeynepFeridun") {
                 document.getElementById('passwordScreen').style.display = 'none';
-                const main = document.getElementById('mainContent');
-                main.style.display = 'block';
+                document.getElementById('mainContent').style.display = 'block';
 
-                // Müzik hemen başlasın
                 const music = document.getElementById('bgMusic');
                 music.volume = 0.68;
-                music.play().catch(err => {
-                    console.log("Müzik otomatik başlamadı, kullanıcı etkileşimi gerekebilir.");
-                });
+                music.play().catch(() => {});
             } else {
                 document.getElementById('errorMsg').style.display = 'block';
                 setTimeout(() => document.getElementById('errorMsg').style.display = 'none', 3000);
             }
         });
 
-        // Enter tuşu ile giriş
         document.getElementById('passwordInput').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') document.getElementById('submitBtn').click();
         });
 
-        // Düşen küçük kırmızı kalpler
+        // Düşen küçük kalpler
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
