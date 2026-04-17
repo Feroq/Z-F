@@ -15,61 +15,15 @@ text-align:center;
 overflow:hidden;
 }
 
-/* LOGIN */
-#login{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.box{
-background:rgba(255,255,255,0.08);
-padding:30px;
-border-radius:20px;
-width:280px;
-backdrop-filter:blur(10px);
-}
-
-input{
-width:100%;
-padding:12px;
-border:none;
-border-radius:15px;
-margin-top:10px;
-text-align:center;
-}
-
-button{
-padding:10px 20px;
-border:none;
-border-radius:20px;
-margin-top:10px;
-cursor:pointer;
-}
-
-.shake{
-animation:shake .4s;
-}
-
-@keyframes shake{
-0%{transform:translateX(0);}
-25%{transform:translateX(-8px);}
-50%{transform:translateX(8px);}
-75%{transform:translateX(-8px);}
-100%{transform:translateX(0);}
-}
-
 /* SITE */
 #site{
-display:none;
 padding:20px;
 height:100vh;
 overflow-y:auto;
 }
 
 .heart{
-font-size:50px;
+font-size:55px;
 animation:pulse 1.5s infinite;
 }
 
@@ -91,6 +45,11 @@ height:300px;
 object-fit:cover;
 border-radius:15px;
 cursor:pointer;
+transition:.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
 }
 
 /* POPUP */
@@ -101,6 +60,7 @@ inset:0;
 background:rgba(0,0,0,0.9);
 justify-content:center;
 align-items:center;
+z-index:999;
 }
 
 #popup img{
@@ -123,20 +83,18 @@ animation:fall 4s linear infinite;
 from{transform:translateY(-10vh);opacity:1;}
 to{transform:translateY(110vh);opacity:0;}
 }
+
+button{
+padding:10px 20px;
+border:none;
+border-radius:20px;
+margin-top:10px;
+cursor:pointer;
+}
 </style>
 </head>
 
 <body>
-
-<!-- LOGIN -->
-<div id="login">
-<div class="box" id="box">
-<h2>🤍 Gizli Sayfa</h2>
-<input type="password" id="pass" placeholder="Şifre">
-<button onclick="login()">Giriş Yap</button>
-<p id="err"></p>
-</div>
-</div>
 
 <!-- SITE -->
 <div id="site">
@@ -170,23 +128,6 @@ to{transform:translateY(110vh);opacity:0;}
 </div>
 
 <script>
-
-const password="ZeynepFeridun";
-
-/* LOGIN */
-function login(){
-const p=document.getElementById("pass").value;
-const box=document.getElementById("box");
-
-if(p===password){
-document.getElementById("login").style.display="none";
-document.getElementById("site").style.display="block";
-}else{
-box.classList.add("shake");
-setTimeout(()=>box.classList.remove("shake"),400);
-document.getElementById("err").innerText="Yanlış şifre 🤍";
-}
-}
 
 /* IMAGE */
 function openImg(src){
